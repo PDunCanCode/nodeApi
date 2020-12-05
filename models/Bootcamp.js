@@ -110,3 +110,4 @@ const BootcampSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+module.expots = mongoose.model("Bootcamp", BootcampSchema);
