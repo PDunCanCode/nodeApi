@@ -1,4 +1,5 @@
 const ErrorResponse = require('../utils/errorResponse')
+const asyncHandler = require('../middleware/async')
 const Bootcamp = require('../models/Bootcamp')
 
 // @desc      Get all bootcamps
@@ -74,6 +75,4 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
         new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
       );
     }
-
-
-  })
+});
