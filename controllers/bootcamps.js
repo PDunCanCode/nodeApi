@@ -1,3 +1,6 @@
+const ErrorResponse = require('../utils/errorResponse')
+const Bootcamp = require('../models/Bootcamp')
+
 // @desc      Get all bootcamps
 // @route     GET /api/v1/bootcamps
 // @access    Public
@@ -72,4 +75,5 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
       );
     }
 
-};
+
+  })
