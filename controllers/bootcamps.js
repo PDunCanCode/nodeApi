@@ -23,7 +23,7 @@ let queryStr = JSON.stringify(reqQuery);
 
 //Creates Mongoose operators (greaterThan='$gt', greaterThanOrEqual='$gte') etc
 queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, (match) => `$${match}`);
-query = Bootcamp.find(JSON.parse(queryStr));
+query = Bootcamp.find(JSON.parse(queryStr)).populate("courses");
 
 // SELECT FIELDS
 if (req.query.select) {
