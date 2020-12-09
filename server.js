@@ -24,8 +24,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-// File Upload
-app.use("fileupload()");
+
+// File uploading
+app.use(fileupload());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
