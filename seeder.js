@@ -34,8 +34,8 @@ const users = JSON.parse(
 const importData = async () => {
   try {
     await Bootcamp.create(bootcamps);
-    await Courses.create(courses);
-    await users.create(users);
+    await Course.create(courses);
+    await User.create(users);
     console.log("Data IMPORTED".green.inverse);
     process.exit;
   } catch (err) {
