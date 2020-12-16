@@ -54,6 +54,20 @@ exports.getMe = asyncHandler(async (req, res, next) => {
     data: user,
   });
 });
+// @desc LOGOUT user
+// @route GET /api/v1/auth/logout
+// @access Private
+
+exports.logout = asyncHandler(async (req, res, next) => {
+  res.cookie("token", "none", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
 
 // @desc      Update user details
 // @route     PUT /api/v1/auth/updatedetails
@@ -79,11 +93,11 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
 // @route     PUT /api/v1/auth/updatepassword
 // @access    Private
 exports.updatePassword = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select('+password');
+  const user = await User.findById(req.user.id).select("+password");
 
   // Check current password
   if (!(await user.matchPassword(req.body.currentPassword))) {
-    return next(new ErrorResponse('Password is incorrect', 401));
+    return next(new ErrorResponse("Password is incorrect", 401));
   }
 
   user.password = req.body.newPassword;
