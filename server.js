@@ -9,6 +9,9 @@ const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 const helmet = require("helmet");
 const xss = require("xss-clean");
+const hpp = require("hpp");
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 
 //Load env variables
@@ -46,6 +49,21 @@ app.use(helmet());
 
 // Prevent Cross Sire Scripting Attacks
 app.use(xss());
+
+// Rate Limitiing
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, //10mins
+  max: 100,
+});
+
+app.use(limiter);
+
+// Prevent HTTP param pollution
+
+app.use(hpp());
+
+// Enable CORS
+app.use(cors());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
