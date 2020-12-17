@@ -24,7 +24,7 @@ const bootcamps = require("./routes/bootcamps");
 const courses = require("./routes/courses");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
-const reviews = rewuire("./routes/reviews");
+const reviews = require("./routes/reviews");
 
 const app = express();
 
